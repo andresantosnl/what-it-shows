@@ -1,0 +1,58 @@
+---
+layout: runbook
+title: '#4471 · two causes, not one'
+owner: support desk
+status: living
+reviewed: 2026-11-17
+signature: '4071-806B'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) was merged as one issue and marked known. It is two bugs. Both flip a
+date, but they have different causes and different fixes. One fix does not close the other.
+
+## What the table shows
+
+Intake tags each report from the reporter's browser. That tag is a guess. The cause comes from
+the tenant: the locale it writes dates in, and the booking form it runs. The table below groups
+every report merged into #4471 by that cause. It counts each report id once.
+
+<CauseTable ticket={4471} />
+
+The row marked as not this ticket is the second bug. It has no ticket of its own in the desk.
+We filed one ticket per bug:
+
+- **parser**: the shared parser reads every date month first, so day-first tenants get flipped
+  dates. Issue: [what-it-shows#1](https://github.com/andresantosnl/what-it-shows/issues/1).
+- **hint**: booking-v3 prints a month-first hint under the date field. Day-first tenants type
+  what the hint says and the form reads it day first. The fix is the hint or the form, not the
+  parser. Issue: [what-it-shows#2](https://github.com/andresantosnl/what-it-shows/issues/2).
+
+<Callout kind="warn">
+Intake tags do not tell the causes apart. Some parser reports are tagged hint, and some hint
+reports are tagged parser. Count by tenant, not by tag.
+</Callout>
+
+## Why they were merged
+
+The desk merges on subject line alone ([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
+Both bugs produce the same subjects, such as "Wrong day on the invite". A subject cannot tell a
+parser report from a hint report, so the merge hid the second bug behind the first.
+
+## Open question
+
+The desk read a few reports as a one-day move, not a month flip. They mention time zones. They
+stay counted under their tenant's cause above. They may be a third bug, a time-zone one. Read
+them before closing either ticket.
+
+## Lessons
+
+- Merging on subject counts the same words, not the same bug. Merge on cause.
+- A number in a page comes from a component. This page types none.
+
+<RenderStamp {signature} />
