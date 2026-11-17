@@ -4,7 +4,7 @@ title: '#4471 · two causes, not one'
 owner: support desk
 status: living
 reviewed: 2026-11-17
-signature: '4071-806B'
+signature: 'v1.eyJzdWIiOiI0NDQwIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQ5NDk2NzUsImV4cCI6MTc5NTAzNjA3NX0.irphyLxPXTHplFeo3PPCcqHXFaNpGYzJfkAtQzYOQ3Q'
 ---
 
 <script>
