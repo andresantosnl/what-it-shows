@@ -20,6 +20,8 @@ aside{border-left:4px solid var(--warn);padding:.5rem 1rem;margin:1rem 0;backgro
 <ul><li><strong>parser</strong>: the shared parser reads every date month first, so day-first tenants get flipped dates. Issue: <a href="https://github.com/andresantosnl/what-it-shows/issues/1">what-it-shows#1</a>.</li>
 <li><strong>hint</strong>: booking-v3 prints a month-first hint under the date field. Day-first tenants type what the hint says and the form reads it day first. The fix is the hint or the form, not the parser. Issue: <a href="https://github.com/andresantosnl/what-it-shows/issues/2">what-it-shows#2</a>.</li></ul>
 <aside>Intake tags do not tell the causes apart. Some parser reports are tagged hint, and some hint reports are tagged parser. Count by tenant, not by tag.</aside>
+<h2>How each bug ended</h2>
+<p>Engineering closed #4471 on 5 October. The parser bug is fixed: the parser now reads dd/mm for eu locales (<code>fix(dates): parse dd/mm for eu locales</code>). The hint bug is won't fix, because the booking-v3 form is retired. Our two tickets are closed the same way: the parser ticket as completed, the hint ticket as not planned.</p>
 <h2>Why they were merged</h2>
 <p>The desk merges on subject line alone (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>). Both bugs produce the same subjects, such as "Wrong day on the invite". A subject cannot tell a parser report from a hint report, so the merge hid the second bug behind the first.</p>
 <h2>Open question</h2>

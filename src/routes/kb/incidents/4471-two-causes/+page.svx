@@ -38,6 +38,13 @@ Intake tags do not tell the causes apart. Some parser reports are tagged hint, a
 reports are tagged parser. Count by tenant, not by tag.
 </Callout>
 
+## How each bug ended
+
+Engineering closed #4471 on 5 October. The parser bug is fixed: the parser now reads dd/mm for
+eu locales (`fix(dates): parse dd/mm for eu locales`). The hint bug is won't fix, because the
+booking-v3 form is retired. Our two tickets are closed the same way: the parser ticket as
+completed, the hint ticket as not planned.
+
 ## Why they were merged
 
 The desk merges on subject line alone ([decision 0001](/kb/decisions/0001-dedupe-by-subject)).
